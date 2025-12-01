@@ -3,10 +3,11 @@
 # Assignment: Pokemon (part 3) - Populate & Menu
 # Class: CS30
 # Coder: James Glendinning
-# Date: 9/26/2025
-# Version: 1
+# Date: 12/1/2025
+# Version: 3
 ###############################################################################
-'''4 dictionaries of Pokemon compounded into one global database.'''
+'''4 dictionaries of Pokemon compounded into one global database.
+Menu that can be navigated simulating a game menu.'''
 ###############################################################################
 # Imports and Global Variables ------------------------------------------------
 player = {"name": None, "active": None}
@@ -27,6 +28,8 @@ pokedex = {"Charmander": {"type": "Fire",
 activepokemon = None
 
 activemove = None
+
+activenickname = None
 # Functions -------------------------------------------------------------------
 
 
@@ -87,15 +90,32 @@ def move():
     
     
 def nickname():
-    print("picking nickname")
+    if not activepokemon == None:
+        activenickname = input("Give your new companion a fitting name. ")
+        print("And so, we named it " + activenickname.title() + "!")
+        mainmenu()
+    else:
+        print("Oops! You need to choose a Pokémon first!")
+        pokemon()
     
     
 def quit():
-    print("quitting")
+    print("Buh-bye!")
+
+
+def start():
+    if not activepokemon == None:
+        print("You're all set! Off you go, now!")
+        print("[Just pretend you're embarking on an awesome",
+        "adventure, here...]")
+    else:
+        print("Easy there! You don't have everything yet!")
+        mainmenu()
     
 
 # Main ------------------------------------------------------------------------
 menuchoices = {"pokemon": pokemon, "move": move,
-               "nickname": nickname, "quit": quit}
+               "nickname": nickname, "quit": quit,
+               "start": start}
 introduction()
 mainmenu()
